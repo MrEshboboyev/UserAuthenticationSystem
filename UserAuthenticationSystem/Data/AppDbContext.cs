@@ -20,7 +20,6 @@ namespace UserAuthenticationSystem.Data
                     new User
                     {
                         Id = 1,
-                        Username = "john_doe",
                         Email = "john.doe@example.com",
                         PasswordHash = "hashed_password_1",
                         FirstName = "John",
@@ -35,7 +34,6 @@ namespace UserAuthenticationSystem.Data
                     new User
                     {
                         Id = 2,
-                        Username = "alice_smith",
                         Email = "alice.smith@example.com",
                         PasswordHash = "hashed_password_2",
                         FirstName = "Alice",
@@ -51,7 +49,6 @@ namespace UserAuthenticationSystem.Data
                     new User
                     {
                         Id = 3,
-                        Username = "bob_jones",
                         Email = "bob.jones@example.com",
                         PasswordHash = "hashed_password_3",
                         FirstName = "Bob",
@@ -66,7 +63,6 @@ namespace UserAuthenticationSystem.Data
                     new User
                     {
                         Id = 4,
-                        Username = "emily_white",
                         Email = "emily.white@example.com",
                         PasswordHash = "hashed_password_4",
                         FirstName = "Emily",
@@ -81,7 +77,6 @@ namespace UserAuthenticationSystem.Data
                     new User
                     {
                         Id = 5,
-                        Username = "jane_smith",
                         Email = "jane.smith@example.com",
                         PasswordHash = "hashed_password_15",
                         FirstName = "Jane",
@@ -95,8 +90,7 @@ namespace UserAuthenticationSystem.Data
                     },
                     new User
                     {
-                        Id = 16,
-                        Username = "sam_green",
+                        Id = 6,
                         Email = "sam.green@example.com",
                         PasswordHash = "hashed_password_16",
                         FirstName = "Sam",
@@ -110,8 +104,7 @@ namespace UserAuthenticationSystem.Data
                     },
                     new User
                     {
-                        Id = 17,
-                        Username = "olivia_brown",
+                        Id = 7,
                         Email = "olivia.brown@example.com",
                         PasswordHash = "hashed_password_17",
                         FirstName = "Olivia",
@@ -125,8 +118,7 @@ namespace UserAuthenticationSystem.Data
                     },
                     new User
                     {
-                        Id = 18,
-                        Username = "david_miller",
+                        Id = 8,
                         Email = "david.miller@example.com",
                         PasswordHash = "hashed_password_18",
                         FirstName = "David",
@@ -140,8 +132,7 @@ namespace UserAuthenticationSystem.Data
                     },
                     new User
                     {
-                        Id = 19,
-                        Username = "grace_turner",
+                        Id = 9,
                         Email = "grace.turner@example.com",
                         PasswordHash = "hashed_password_19",
                         FirstName = "Grace",
@@ -155,8 +146,7 @@ namespace UserAuthenticationSystem.Data
                     },
                     new User
                     {
-                        Id = 20,
-                        Username = "ryan_clark",
+                        Id = 10,
                         Email = "ryan.clark@example.com",
                         PasswordHash = "hashed_password_20",
                         FirstName = "Ryan",
