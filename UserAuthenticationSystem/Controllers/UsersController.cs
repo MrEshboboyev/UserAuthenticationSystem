@@ -18,6 +18,7 @@ namespace UserAuthenticationSystem.Controllers
             return View(objList);
         }
 
+        #region Create User
         [HttpGet]
         public IActionResult Create()
         {
@@ -38,5 +39,62 @@ namespace UserAuthenticationSystem.Controllers
 
             return RedirectToAction("Index");
         }
+
+        #endregion
+
+        #region Edit User
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            User obj = _context.Users.Find(id);
+
+            if(obj == null)
+                return BadRequest();
+
+            return View(obj);
+        }
+        
+        [HttpPost]
+        public IActionResult Edit(User user)
+        {
+            if (user == null)
+                return BadRequest();
+
+            if(ModelState.IsValid)
+            {
+                _context.Users.Update(user);
+                _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
+        }
+        #endregion
+
+        #region Delete User
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            User obj = _context.Users.Find(id);
+
+            if (obj == null)
+                return BadRequest();
+
+            return View(obj);
+        }
+        
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeletePost(int id)
+        {
+            User obj = _context.Users.Find(id);
+
+            if (obj == null)
+                return BadRequest();
+
+            _context.Users.Remove(obj);
+            _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+        #endregion
     }
 }
