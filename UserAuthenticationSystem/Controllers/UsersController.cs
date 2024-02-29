@@ -96,5 +96,42 @@ namespace UserAuthenticationSystem.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
+        #region Login
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if(!ModelState.IsValid)
+                return View(model);
+
+            var obj = _context.Users.FirstOrDefault(u => u.Email == model.Email);
+            if(obj != null && VerifyPassword(model.Password, obj.PasswordHash))
+            {
+                if(obj.PasswordHash == model.Password)
+                    return RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError(string.Empty, "Invalid email or password");
+            return View();
+        }
+        #endregion
+
+        private bool VerifyPassword(string enteredPassword, string storedPasswordHash)
+        {
+            if(string.IsNullOrEmpty(storedPasswordHash) || string.IsNullOrEmpty(enteredPassword))
+                return false;
+
+            if (enteredPassword == storedPasswordHash) return true;
+
+            return false;
+        }
     }
 }
