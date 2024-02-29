@@ -146,6 +146,37 @@ namespace UserAuthenticationSystem.Controllers
         }
         #endregion
 
+        #region Register
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Register(User user)
+        {
+            if (!ModelState.IsValid)
+                return View(user);
+
+            _context.Users.Add(user);
+            _context.SaveChangesAsync();
+            // Manually set authentication status using a cookie
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Email),
+                    // Add other claims as needed
+                };
+
+            var identity = new ClaimsIdentity(claims, "custom");
+            var principal = new ClaimsPrincipal(identity);
+
+            HttpContext.SignInAsync(principal);
+
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
+
         private bool VerifyPassword(string enteredPassword, string storedPasswordHash)
         {
             if(string.IsNullOrEmpty(storedPasswordHash) || string.IsNullOrEmpty(enteredPassword))
