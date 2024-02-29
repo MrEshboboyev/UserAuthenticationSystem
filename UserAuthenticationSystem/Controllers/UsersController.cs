@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using UserAuthenticationSystem.Data;
@@ -134,6 +135,14 @@ namespace UserAuthenticationSystem.Controllers
 
             ModelState.AddModelError(string.Empty, "Invalid email or password");
             return View();
+        }
+        #endregion
+
+        #region Logout
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
         #endregion
 
