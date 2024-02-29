@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UserAuthenticationSystem.Data;
 
 #nullable disable
@@ -18,53 +18,53 @@ namespace UserAuthenticationSystem.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.0-preview.1.24081.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("UserAuthenticationSystem.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -75,141 +75,141 @@ namespace UserAuthenticationSystem.Migrations
                         {
                             Id = 1,
                             Address = "123 Main St, Cityville",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8112),
-                            DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5367),
+                            DateOfBirth = new DateTime(1990, 5, 14, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "john.doe@example.com",
                             FirstName = "John",
                             LastName = "Doe",
                             PasswordHash = "hashed_password_1",
                             PhoneNumber = "+1234567890",
                             ProfilePicture = "https://example.com/john_doe_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8124)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5368)
                         },
                         new
                         {
                             Id = 2,
                             Address = "456 Oak St, Townsville",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8126),
-                            DateOfBirth = new DateTime(1988, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5372),
+                            DateOfBirth = new DateTime(1988, 11, 7, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "alice.smith@example.com",
                             FirstName = "Alice",
                             LastName = "Smith",
                             PasswordHash = "hashed_password_2",
                             PhoneNumber = "+9876543210",
                             ProfilePicture = "https://example.com/alice_smith_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8127)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5372)
                         },
                         new
                         {
                             Id = 3,
                             Address = "789 Pine St, Villagetown",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8129),
-                            DateOfBirth = new DateTime(1985, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5374),
+                            DateOfBirth = new DateTime(1985, 3, 20, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "bob.jones@example.com",
                             FirstName = "Bob",
                             LastName = "Jones",
                             PasswordHash = "hashed_password_3",
                             PhoneNumber = "+1122334455",
                             ProfilePicture = "https://example.com/bob_jones_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8130)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5375)
                         },
                         new
                         {
                             Id = 4,
                             Address = "567 Elm St, Hamletsville",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8132),
-                            DateOfBirth = new DateTime(1992, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5377),
+                            DateOfBirth = new DateTime(1992, 7, 13, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "emily.white@example.com",
                             FirstName = "Emily",
                             LastName = "White",
                             PasswordHash = "hashed_password_4",
                             PhoneNumber = "+9988776655",
                             ProfilePicture = "https://example.com/emily_white_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8132)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5378)
                         },
                         new
                         {
                             Id = 5,
                             Address = "456 Oak St, Townsville",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8134),
-                            DateOfBirth = new DateTime(1985, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5380),
+                            DateOfBirth = new DateTime(1985, 8, 21, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "jane.smith@example.com",
                             FirstName = "Jane",
                             LastName = "Smith",
                             PasswordHash = "hashed_password_15",
                             PhoneNumber = "+0987654321",
                             ProfilePicture = "https://example.com/jane_smith_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8135)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5380)
                         },
                         new
                         {
                             Id = 6,
                             Address = "876 Maple St, Grovetown",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8136),
-                            DateOfBirth = new DateTime(1993, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5382),
+                            DateOfBirth = new DateTime(1993, 12, 4, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "sam.green@example.com",
                             FirstName = "Sam",
                             LastName = "Green",
                             PasswordHash = "hashed_password_16",
                             PhoneNumber = "+1122334455",
                             ProfilePicture = "https://example.com/sam_green_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8137)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5383)
                         },
                         new
                         {
                             Id = 7,
                             Address = "234 Birch St, Forestville",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8139),
-                            DateOfBirth = new DateTime(1991, 9, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5385),
+                            DateOfBirth = new DateTime(1991, 9, 17, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "olivia.brown@example.com",
                             FirstName = "Olivia",
                             LastName = "Brown",
                             PasswordHash = "hashed_password_17",
                             PhoneNumber = "+9988776655",
                             ProfilePicture = "https://example.com/olivia_brown_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8139)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5385)
                         },
                         new
                         {
                             Id = 8,
                             Address = "789 Cedar St, Hilltop",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8141),
-                            DateOfBirth = new DateTime(1987, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5388),
+                            DateOfBirth = new DateTime(1987, 2, 27, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "david.miller@example.com",
                             FirstName = "David",
                             LastName = "Miller",
                             PasswordHash = "hashed_password_18",
                             PhoneNumber = "+1122334455",
                             ProfilePicture = "https://example.com/david_miller_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8142)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5388)
                         },
                         new
                         {
                             Id = 9,
                             Address = "345 Pine St, Valleytown",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8144),
-                            DateOfBirth = new DateTime(1994, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5390),
+                            DateOfBirth = new DateTime(1994, 6, 10, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "grace.turner@example.com",
                             FirstName = "Grace",
                             LastName = "Turner",
                             PasswordHash = "hashed_password_19",
                             PhoneNumber = "+9988776655",
                             ProfilePicture = "https://example.com/grace_turner_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8144)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5390)
                         },
                         new
                         {
                             Id = 10,
                             Address = "567 Oak St, Laketown",
-                            CreatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8146),
-                            DateOfBirth = new DateTime(1990, 8, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5392),
+                            DateOfBirth = new DateTime(1990, 8, 6, 19, 0, 0, 0, DateTimeKind.Utc),
                             Email = "ryan.clark@example.com",
                             FirstName = "Ryan",
                             LastName = "Clark",
                             PasswordHash = "hashed_password_20",
                             PhoneNumber = "+1122334455",
                             ProfilePicture = "https://example.com/ryan_clark_profile.jpg",
-                            UpdatedAt = new DateTime(2024, 2, 28, 20, 16, 23, 666, DateTimeKind.Local).AddTicks(8146)
+                            UpdatedAt = new DateTime(2024, 2, 29, 16, 0, 15, 219, DateTimeKind.Utc).AddTicks(5393)
                         });
                 });
 #pragma warning restore 612, 618
