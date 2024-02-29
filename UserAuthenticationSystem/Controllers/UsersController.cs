@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using UserAuthenticationSystem.Data;
 using UserAuthenticationSystem.Models;
 
@@ -115,8 +117,19 @@ namespace UserAuthenticationSystem.Controllers
             var obj = _context.Users.FirstOrDefault(u => u.Email == model.Email);
             if(obj != null && VerifyPassword(model.Password, obj.PasswordHash))
             {
-                if(obj.PasswordHash == model.Password)
-                    return RedirectToAction("Index", "Home");
+                // Manually set authentication status using a cookie
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, obj.Email),
+                    // Add other claims as needed
+                };
+
+                var identity = new ClaimsIdentity(claims, "custom");
+                var principal = new ClaimsPrincipal(identity);
+
+                HttpContext.SignInAsync(principal);
+
+                return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError(string.Empty, "Invalid email or password");
