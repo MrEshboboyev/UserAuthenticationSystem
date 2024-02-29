@@ -9,6 +9,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Set your desired expiration time
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
